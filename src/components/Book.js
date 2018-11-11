@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class Book extends Component {
   render() {
   	let showThumbnail = this.props.book.imageLinks ?
-  	this.props.book.imageLinks.thumbnail : '';
+  	this.props.book.imageLinks.thumbnail : 'http://via.placeholder.com/128x193?text=No Thumb';
     return (
       <div className="book">
         <div className="book-top">
