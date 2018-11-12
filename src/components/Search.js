@@ -6,27 +6,27 @@ import * as BooksAPI from '../BooksAPI';
 class Search extends Component {
   state = {
     query: '',
-    searchedBooks: []
+    booksSearched: []
   }
 
   updateQuery = (query) => {
     this.setState({
       query: query
     })
-    this.updateSearchedBooks(query);
+    this.updatebooksSearched(query);
   }
 
-  updateSearchedBooks = (query) => {
+  updatebooksSearched = (query) => {
     if (query) {
-          BooksAPI.search(query).then((searchedBooks) => {
-            if (searchedBooks.error) {
-              this.setState({searchedBooks: []});
+          BooksAPI.search(query).then((booksSearched) => {
+            if (booksSearched.error) {
+              this.setState({booksSearched: []});
             } else {
-              this.setState({searchedBooks: searchedBooks });
+              this.setState({booksSearched: booksSearched });
             }
           })
       } else {
-      this.setState({searchedBooks: [] });
+      this.setState({booksSearched: [] });
     }
   }
 
@@ -51,10 +51,10 @@ class Search extends Component {
       <div className="search-books-results">
         <ol className="books-grid">
           {
-            this.state.searchedBooks.map(searchedBook => (
-              <li key={searchedBook.id}>
+            this.state.booksSearched.map(bookSearched => (
+              <li key={bookSearched.id}>
                 <Book
-                  book={searchedBook}
+                  book={bookSearched}
                 />
               </li>
             ))
