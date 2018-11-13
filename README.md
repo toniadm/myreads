@@ -11,7 +11,7 @@ Use the following steps to install the application:
 * Download this repository to your PC
 * Install project dependencies with `npm install`
 * Start the development server with `npm start`
-* Open http://localhost:3000 in a your browser
+* Open http://localhost:3000 in a browser
 
 ## Folder Structure
 
