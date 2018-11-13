@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 import Book from './Book';
-
 import * as BooksAPI from '../BooksAPI';
+
 
 class Search extends Component {
   state = {
@@ -36,14 +37,10 @@ class Search extends Component {
       <div className="search-books">
       <div className="search-books-bar">
 
-        <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a>
+        <Link to="/" className="close-search">Close</Link>
 
         <div className="search-books-input-wrapper">
-          <input
-            type="text" placeholder="Search by title or author"
-            value={this.state.query}
-            onChange={(event) => this.updateQuery(event.target.value)}
-          />
+          <input type="text" placeholder="Search by title or author" value={this.state.query} onChange={(event) => this.updateQuery(event.target.value)}/>
         </div>
 
       </div>
@@ -51,13 +48,20 @@ class Search extends Component {
       <div className="search-books-results">
         <ol className="books-grid">
           {
-            this.state.booksSearched.map(bookSearched => (
-              <li key={bookSearched.id}>
-                <Book
-                  book={bookSearched}
-                />
+            this.state.booksSearched.map(bookSearched => {
+              let bshelf = "none";
+
+              this.props.books.map(book => (
+                  book.id === bookSearched.id ?
+                  bshelf = book.shelf : ''
+                ));
+
+              return (
+                <li key={bookSearched.id}>
+                  <Book book={bookSearched} changeShelf={this.props.changeShelf} currentShelf={bshelf}/>
               </li>
-            ))
+              );
+            })
           }
         </ol>
       </div>

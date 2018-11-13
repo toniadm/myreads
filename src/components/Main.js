@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 import Book from './Book';
 
 class Main extends Component {
   render() {
-    console.log(this.props.books)
     return (
     <div className="list-books">
 
@@ -22,10 +22,7 @@ class Main extends Component {
                    .filter(book => book.shelf === 'currentlyReading')
                    .map(book => (
                       <li key={book.id} >
-                        <Book
-                          book={book}
-                          moveShelf={this.props.moveShelf}
-                        />
+                        <Book book={book} changeShelf={this.props.changeShelf} currentShelf="currentlyReading"/>
                       </li>
                     ))
                 }
@@ -41,10 +38,7 @@ class Main extends Component {
                    .filter(book => book.shelf === 'wantToRead')
                    .map(book => (
                       <li key={book.id} >
-                        <Book
-                          book={book}
-                          moveShelf={this.props.moveShelf}
-                        />
+                        <Book book={book} changeShelf={this.props.changeShelf} currentShelf="wantToRead"/>
                       </li>
                     ))
                 }
@@ -60,10 +54,7 @@ class Main extends Component {
                    .filter(book => book.shelf === 'read')
                    .map(book => (
                       <li key={book.id} >
-                        <Book
-                          book={book}
-                          moveShelf={this.props.moveShelf}
-                        />
+                        <Book book={book} changeShelf={this.props.changeShelf} currentShelf="read"/>
                       </li>
                     ))
                 }
@@ -73,7 +64,7 @@ class Main extends Component {
         </div>
       </div>
       <div className="open-search">
-        <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
+        <Link to="/search">Add a book</Link>
       </div>
     </div>
     );
