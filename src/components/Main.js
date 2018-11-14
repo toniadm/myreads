@@ -4,6 +4,8 @@ import Book from './Book';
 
 class Main extends Component {
   render() {
+    const {bksData} = this.props;
+
     return (
     <div className="list-books">
 
@@ -18,7 +20,7 @@ class Main extends Component {
             <div className="bookshelf-books">
               <ol className="books-grid">
                 {
-                this.props.bksData
+                bksData
                    .filter(book => book.shelf === 'currentlyReading')
                    .map(book => (
                       <li key={book.id} >
@@ -34,7 +36,7 @@ class Main extends Component {
             <div className="bookshelf-books">
               <ol className="books-grid">
                 {
-                this.props.bksData
+                bksData
                    .filter(book => book.shelf === 'wantToRead')
                    .map(book => (
                       <li key={book.id} >
@@ -50,7 +52,7 @@ class Main extends Component {
             <div className="bookshelf-books">
               <ol className="books-grid">
                 {
-                this.props.bksData
+                bksData
                    .filter(book => book.shelf === 'read')
                    .map(book => (
                       <li key={book.id} >

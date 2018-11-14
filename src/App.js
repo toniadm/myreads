@@ -5,6 +5,7 @@ import Main from './components/Main';
 
 import * as BooksAPI from './BooksAPI'
 import './App.css'
+import { Switch } from "react-router-dom";
 
 class BooksApp extends React.Component {
   state = {
@@ -38,13 +39,16 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
 
-       <Route exact path="/" render={() => (
-         <Main bksData={this.state.bksData} changeShelf={this.changeShelf}/>
-        )} />
+        <Switch>
+         <Route exact path="/" render={() => (
+           <Main bksData={this.state.bksData} changeShelf={this.changeShelf}/>
+          )} />
 
-        <Route path="/search" render={() => (
-         <Search changeShelf={this.changeShelf} bksData={this.state.bksData}/>
-        )} />
+          <Route path="/search" render={() => (
+           <Search changeShelf={this.changeShelf} bksData={this.state.bksData}/>
+          )} />
+        </Switch>
+        
       </div>
     )
   }
